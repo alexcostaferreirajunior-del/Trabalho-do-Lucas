@@ -1,6 +1,7 @@
 package trabalho1;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -15,12 +16,20 @@ public class App {
         if (num == 2) {
             Jogos j1 = new Jogos("m", 909, "29", "281");
             j1.exibirDetalhes();
-        } else if (num == 1) {
-
+        } else if (num == 1) 
+            
+            
             System.out.println("Quantos jogos deseja cadastrar: ");
             int quantidade = scan.nextInt();
-            ArrayList<Jogos> novoJogo = new ArrayList<>();
+          
+            
+            
+            
+            
+            
+            
             for (int i = 0; i < quantidade; i++) {
+                
 
             }
 
