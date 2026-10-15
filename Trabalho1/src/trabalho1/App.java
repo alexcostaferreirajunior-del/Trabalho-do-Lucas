@@ -1,41 +1,30 @@
 package trabalho1;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
-
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Digite 1 se quiser adicionar um jogo ou digite 2 se quiser ver o catalogo ");
+        int num;
+        do {
+            System.out.println("\nDigite 1 para adicionar jogo, 2 para ver o catalogo ou 0 para sair:");
+            num = scan.nextInt();
 
-        int num = scan.nextInt();
-
-        if (num == 2) {
-            Jogos j1 = new Jogos("m", 909, "29", "281");
-            j1.exibirDetalhes();
-        } else if (num == 1) 
-            
-            
-            System.out.println("Quantos jogos deseja cadastrar: ");
-            int quantidade = scan.nextInt();
-          
-            
-            
-            
-            
-            
-            
-            for (int i = 0; i < quantidade; i++) {
-                
-
+            switch (num) {
+                case 1 -> {
+                    System.out.println("Quantos jogos deseja cadastrar: ");
+                    int quantidade = scan.nextInt();
+                    for (int i = 0; i < quantidade; i++) {
+                        Jogos.adicionarJogos(scan);
+                    }
+                }
+                case 2 -> Jogos.exibirCatalogo();
+                case 0 -> System.out.println("Encerrando o programa.");
+                default -> System.out.println("Opcao invalida. Tente novamente.");
             }
+        } while (num != 0);
 
-        } else {
-            System.out.println("Acho que você precisa voltar para o primario não você realmente precisa");
-
-        }
+        scan.close();
     }
 }
