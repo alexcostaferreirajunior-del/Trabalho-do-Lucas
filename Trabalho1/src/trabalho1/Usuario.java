@@ -1,12 +1,12 @@
 package trabalho1;
 
-private class Compra{
+private class usuário{
 
-String usuario;
-double valor;
-String jogo;
+public String usuario;
+private double valor;
+public String jogo;
 
-public Compra(String usuario, double valor, String jogo) {
+public usuário(String usuario, double valor, String jogo) {
     this.usuario = usuario;
     this.valor = valor;
     this.jogo = jogo;
@@ -14,14 +14,10 @@ public Compra(String usuario, double valor, String jogo) {
 
 
 }
-    public class Usuario{
-
-}
 
 public static void RealizarCompra(String[] args) {
     
 
 Usuario usuario;
-
 
 }
