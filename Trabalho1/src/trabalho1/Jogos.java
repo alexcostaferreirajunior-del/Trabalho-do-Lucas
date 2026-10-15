@@ -8,9 +8,9 @@ public class Jogos {
     private String nomes;
     private double valores;
     private String generos;
-    private String avaliacao;
+    private double avaliacao;
     private static final ArrayList<Jogos> listJogos = new ArrayList<>();
-      public Jogos(String nome, double valor, String genero, String avaliacao) {
+      public Jogos(String nome, double valor, String genero, double avaliacao) {
         this.nomes = nome;
         this.valores = valor;
         this.generos = genero;
@@ -25,9 +25,9 @@ public class Jogos {
 
     public double getvalor() {return this.valores;}
 
-    public void setAvaliacao(String avaliacao) {this.avaliacao = avaliacao;}
+    public void setAvaliacao(double avaliacao) {this.avaliacao = avaliacao;}
 
-    public String getAvaliacao() {return this.avaliacao;}
+    public double  getAvaliacao() {return this.avaliacao;}
 
     public void setgenero(String genero) {  this.generos = genero; }
 
@@ -38,15 +38,24 @@ public class Jogos {
         String nome = cadastroJG.next();
         System.out.println("Digite o valor do jogo");
         double valor = cadastroJG.nextDouble();
-        System.out.println("Digite os generos do jogo: ");
+        System.out.println("Digite os generos do jogo sem espaçamentos separandocada genero por virgula: ");
         String genero = cadastroJG.next();
-        System.out.println("Digite a nota do jogo");
-        String avaliacao = cadastroJG.next();
 
+        System.out.println("Digite a nota do jogo");
+        double avaliacao = cadastroJG.nextDouble();
+       if(avaliacao < 0 || avaliacao > 10){
+            System.out.println("Nota invalida. A nota deve estar entre 0 e 10.");
+            System.out.println("Digite a nota do jogo novamente: ");
+            avaliacao = cadastroJG.nextDouble();
+            
+        }else{
         Jogos novoJogo = new Jogos(nome, valor, genero, avaliacao);
         listJogos.add(novoJogo);
+        
+      
         System.out.println("O jogo " + novoJogo.getnome() + " esta registrado com sucesso");
     }
+}
 
     public static void exibirCatalogo() {
         if (listJogos.isEmpty()) {
@@ -64,7 +73,7 @@ public class Jogos {
         System.out.println("Nome: " + this.nomes);
 
         System.out.println("Valor R$: " + this.valores);
-        System.out.println("Nota: " + this.avaliacao + "de 10");
+        System.out.println("Nota: " + this.avaliacao + " de 10");
 
         System.out.println(this.generos);
         System.out.println("\n-------------------------------------\n");
