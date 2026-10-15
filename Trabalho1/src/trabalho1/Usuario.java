@@ -15,7 +15,7 @@ public usuário(String usuario, double valor, String jogo) {
 
 }
 
-public static void RealizarCompra(String[] args) {
+public Double realizarCompra(){
     
 
 Usuario usuario;
