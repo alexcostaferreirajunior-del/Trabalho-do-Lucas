@@ -1,23 +1,23 @@
 package trabalho1;
 
-private class usuário{
+public class Usuario {
 
-public String usuario;
-private double valor;
-public String jogo;
+    public String usuario;
+    private double saldo;
+    public String jogo;
 
-public usuário(String usuario, double valor, String jogo) {
-    this.usuario = usuario;
-    this.valor = valor;
-    this.jogo = jogo;
+    public Usuario(String usuario, double saldo, String jogo) {
+        this.usuario = usuario;
+        this.saldo = saldo;
+        this.jogo = jogo;
+    }
 
+    public double getSaldo() {
+        return saldo;
+    }
 
-
-}
-
-public Double realizarCompra(){
-    
-
-Usuario usuario;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
 
 }
