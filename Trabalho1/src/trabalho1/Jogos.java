@@ -73,6 +73,11 @@ public class Jogos {
             jogo.exibirDetalhes();
         }
     }
+
+    public static ArrayList<Jogos> getCatalogo() {
+        return listJogos;
+    }
+
 // imprime os detalhes do jogo, incluindo nome, valor, nota e gênero
     public void exibirDetalhes() {
         System.out.println("\n------------------------------\n");
