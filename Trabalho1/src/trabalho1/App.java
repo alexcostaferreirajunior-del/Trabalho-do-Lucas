@@ -18,7 +18,7 @@ public class App {
                     for (int i = 0; i < quantidade; i++) {
                         Jogos.adicionarJogos(scan);
                     }
-                }
+                } 
                 case 2 -> Jogos.exibirCatalogo();
                 case 3 -> System.out.println("Digite a quantidade: ");
                 int quanto = scan.nextInt(); 

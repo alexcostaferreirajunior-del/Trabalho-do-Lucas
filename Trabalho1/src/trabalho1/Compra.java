@@ -4,7 +4,7 @@ public class Compra {
 
     public String usuario;
 private double valor;
-    public String jogo;
+    public String jogo; 
 
 public Usuario(String usuario, double valor, String jogo) {
     this.usuario = usuario;
@@ -33,7 +33,7 @@ private final Usuario Usuario;
 
         usuario.setSaldo(saldo - valorJogo);
         return true;
-    }
+    } 
 
 }
-} 
+}
