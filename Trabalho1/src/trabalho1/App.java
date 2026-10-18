@@ -8,7 +8,7 @@ public class App {
 // Loop para permitir que o usuário adicione jogos, veja o catálogo ou saia do programa
         int num; 
         do {
-            System.out.println("\nDigite 1 para adicionar jogo, 2 para ver o catalogo ou 0 para sair:");
+            System.out.println("\nDigite 1 para adicionar jogo, 2 para ver o catalogo , 3 para fazer uma compra ou 0 para sair:");
             num = scan.nextInt();
 // Switch case para lidar com a escolha do usuário
             switch (num) { 

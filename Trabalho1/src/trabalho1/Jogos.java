@@ -10,7 +10,7 @@ public class Jogos {
     private String generos;
     private double avaliacao;
     
-    // ArrayList para armazenar os jogos cadastrados
+// Lista estática para armazenar os jogos cadastrados
     private static final ArrayList<Jogos> listJogos = new ArrayList<>();
     // Construtor da classe Jogos
     public Jogos(String nome, double valor, String genero, double avaliacao) {
