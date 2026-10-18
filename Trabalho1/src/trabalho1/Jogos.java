@@ -9,8 +9,11 @@ public class Jogos {
     private double valores;
     private String generos;
     private double avaliacao;
+    
+    // ArrayList para armazenar os jogos cadastrados
     private static final ArrayList<Jogos> listJogos = new ArrayList<>();
-      public Jogos(String nome, double valor, String genero, double avaliacao) {
+    // Construtor da classe Jogos
+    public Jogos(String nome, double valor, String genero, double avaliacao) {
         this.nomes = nome;
         this.valores = valor;
         this.generos = genero;
@@ -33,6 +36,8 @@ public class Jogos {
 
     public String getGenero() { return this.generos;}
 
+
+    // Método para adicionar jogos ao catálogo 
     public static void adicionarJogos(Scanner cadastroJG) {
         System.out.println("Digite o nome do jogo: ");
         String nome = cadastroJG.next();
@@ -40,10 +45,11 @@ public class Jogos {
         double valor = cadastroJG.nextDouble();
         System.out.println("Digite os generos do jogo sem espaçamentos separandocada genero por virgula: ");
         String genero = cadastroJG.next();
-
         System.out.println("Digite a nota do jogo");
         double avaliacao = cadastroJG.nextDouble();
-       if(avaliacao < 0 || avaliacao > 10){
+     
+     // Não deixa o usuário cadastar um nota invalida, ou seja, uma nota que não esteja entre 0 e 10.
+        if(avaliacao < 0 || avaliacao > 10){
             System.out.println("Nota invalida. A nota deve estar entre 0 e 10.");
             System.out.println("Digite a nota do jogo novamente: ");
             avaliacao = cadastroJG.nextDouble();
@@ -56,7 +62,7 @@ public class Jogos {
         System.out.println("O jogo " + novoJogo.getnome() + " esta registrado com sucesso");
     }
 }
-
+// Método para exibir o catálogo de jogos cadastrados alem de informar ao usuário caso não haja nenhum jogo cadastrado
     public static void exibirCatalogo() {
         if (listJogos.isEmpty()) {
             System.out.println("Nenhum jogo cadastrado.");
@@ -67,7 +73,7 @@ public class Jogos {
             jogo.exibirDetalhes();
         }
     }
-
+// imprime os detalhes do jogo, incluindo nome, valor, nota e gênero
     public void exibirDetalhes() {
         System.out.println("\n------------------------------\n");
         System.out.println("Nome: " + this.nomes);
