@@ -48,7 +48,7 @@ public class App {
                     } else {
                         System.out.println("Saldo insuficiente ou valor invalido.");
                     }
-                }
+                } 
                 case 0 -> System.out.println("Encerrando o programa.");
                 default -> System.out.println("Opcao invalida. Tente novamente.");
             }
