@@ -8,16 +8,25 @@ public class Compra {
         this.usuario = usuario;
         this.jogo = jogo;
     }
-//ele chama o metodo getSaldo da classe Usuario e o metodo getvalor da classe Jogos para verificar se o usuario tem saldo suficiente para comprar o jogo. Se o saldo for suficiente, ele subtrai o valor do jogo do saldo do usuario e retorna true, indicando que a compra foi realizada com sucesso. Caso contrario, ele retorna false, indicando que a compra nao foi realizada.
-    public void  realizarCompra() {
+
+    public void realizarCompra() {
+        if (usuario == null || jogo == null) {
+            System.out.println("Usuario ou jogo invalido.");
+            return;
+        }
+
         double saldo = usuario.getSaldo();
-        double valorJogo = jogo.getvalor(); 
- 
-        if (valorJogo < 0 || saldo < valorJogo) {
+        double valorJogo = jogo.getvalor();
+
+        if (!Double.isFinite(saldo) || saldo < 0
+                || !Double.isFinite(valorJogo) || valorJogo <= 0
+                || saldo < valorJogo) {
             System.out.println("Saldo insuficiente ou valor invalido.");
-        }else {
+            return;
+        }
+
         usuario.setSaldo(saldo - valorJogo);
-        System.out.println("Compra realizada com sucesso!"); 
+        System.out.println("Compra realizada com sucesso!");
+        System.out.println("Saldo restante: R$ " + usuario.getSaldo());
     }
-} 
 }

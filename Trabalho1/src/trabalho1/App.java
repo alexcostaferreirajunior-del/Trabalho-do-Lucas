@@ -3,34 +3,100 @@ package trabalho1;
 import java.util.Scanner;
 
 public class App {
+
     public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-// Loop para permitir que o usuário adicione jogos, veja o catálogo ou saia do programa
-        int num; 
-        do {
-            System.out.println("\nDigite 1 para adicionar jogo, 2 para ver o catalogo , 3 para fazer uma compra ou 0 para sair:");
-            num = scan.nextInt();
-// Switch case para lidar com a escolha do usuário
-            switch (num) { 
-                case 1 -> {
-                    System.out.println("Quantos jogos deseja cadastrar: ");
-                    int quantidade = scan.nextInt();
-                    for (int i = 0; i < quantidade; i++) {
-                        Jogos.adicionarJogos(scan);
-                    }
+        try (Scanner scan = new Scanner(System.in)) {
+            String nomeUsuario;
+            do {
+                System.out.println("Digite o nome do usuario: ");
+                nomeUsuario = scan.nextLine().trim();
+                if (nomeUsuario.isEmpty()) {
+                    System.out.println("Nome invalido. Digite um nome valido.");
                 }
-                case 2 -> Jogos.exibirCatalogo();
-                case 3 -> System.out.println("Digite a quantidade: ");
-                int quanto = scan.nextInt(); 
-                for(int i = 0; i = quanto; i++) {
-                    Compra.RealizarCompra(args); 
-                } System.out.println("Digite 1 para adicionar jogo,Digite 2 para ver o Catalogo,Digite 3 para fazer uma compra,Digite 0 para sair "); num = scan.nextInt();
+            } while (nomeUsuario.isEmpty());
 
-                case 0 -> System.out.println("Encerrando o programa.");
-                default -> System.out.println("Opcao invalida. Tente novamente.");
+            double saldoInicial;
+            do {
+                saldoInicial = lerDouble(scan, "Digite o saldo inicial do usuario: ");
+                if (saldoInicial < 0) {
+                    System.out.println("Saldo invalido. O saldo inicial nao pode ser negativo.");
+                }
+            } while (saldoInicial < 0);
+
+            Usuario usuario = new Usuario(nomeUsuario, saldoInicial);
+
+            int num;
+            do {
+                num = lerInteiro(scan, "\nDigite 1 para adicionar jogo, 2 para ver o catalogo, 3 para fazer uma compra ou 0 para sair: ");
+
+                switch (num){
+                    case 1 -> {
+                        int quantidade;
+                        do {
+                            quantidade = lerInteiro(scan, "Quantos jogos deseja cadastrar: ");
+                            if (quantidade < 0) {
+                                System.out.println("Quantidade invalida. Informe zero ou um numero positivo.");
+                            }
+                        } while (quantidade < 0);
+
+                        for (int i = 0; i < quantidade; i++) {
+                            Jogos.adicionarJogos(scan);
+                        }
+                    }
+                    case 2 ->
+                        Jogos.exibirCatalogo();
+                    case 3 -> {
+                        if (Jogos.getCatalogo().isEmpty()) {
+                            System.out.println("Nenhum jogo cadastrado para comprar.");
+                            break;
+                        }
+
+                        for (int i = 0; i < Jogos.getCatalogo().size(); i++) {
+                            System.out.println(i + " - " + Jogos.getCatalogo().get(i).getnome());
+                        }
+
+                        int indice = lerInteiro(scan, "Escolha o index do jogo para comprar: ");
+                        if (indice < 0 || indice >= Jogos.getCatalogo().size()) {
+                            System.out.println("Indice invalido.");
+                            break;
+                        }
+
+                        Compra compra = new Compra(usuario, Jogos.getCatalogo().get(indice));
+                        compra.realizarCompra();
+                    }
+                    case 0 ->
+                        System.out.println("Encerrando o programa.");
+                    default ->
+                        System.out.println("Opcao invalida. Tente novamente.");
+
+                }
+
+            } while (num != 0);
+        }
+    }
+
+    private static int lerInteiro(Scanner scan, String mensagem) {
+        while (true) {
+            System.out.println(mensagem);
+            try {
+                return Integer.parseInt(scan.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada invalida. Digite um numero inteiro.");
             }
-        } while (num != 0);
+        }
+    }
 
-        scan.close();
+    private static double lerDouble(Scanner scan, String mensagem) {
+        while (true) {
+            System.out.println(mensagem);
+            try {
+                double valor = Double.parseDouble(scan.nextLine().trim().replace(',', '.'));
+                if (Double.isFinite(valor)) {
+                    return valor;
+                }
+            } catch (NumberFormatException e) {
+            }
+            System.out.println("Entrada invalida. Digite um numero valido.");
+        }
     }
 }

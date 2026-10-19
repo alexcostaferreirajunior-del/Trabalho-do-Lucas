@@ -3,6 +3,7 @@ package trabalho1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Jogos {
 
     private String nomes;
@@ -37,31 +38,71 @@ public class Jogos {
     public String getGenero() { return this.generos;}
 
 
-    // Método para adicionar jogos ao catálogo 
     public static void adicionarJogos(Scanner cadastroJG) {
-        System.out.println("Digite o nome do jogo: ");
-        String nome = cadastroJG.next();
-        System.out.println("Digite o valor do jogo");
-        double valor = cadastroJG.nextDouble();
-        System.out.println("Digite os generos do jogo sem espaçamentos separandocada genero por virgula: ");
-        String genero = cadastroJG.next();
-        System.out.println("Digite a nota do jogo");
-        double avaliacao = cadastroJG.nextDouble();
-     
-     // Não deixa o usuário cadastar um nota invalida, ou seja, uma nota que não esteja entre 0 e 10.
-        if(avaliacao < 0 || avaliacao > 10){
-            System.out.println("Nota invalida. A nota deve estar entre 0 e 10.");
-            System.out.println("Digite a nota do jogo novamente: ");
-            avaliacao = cadastroJG.nextDouble();
-            
-        }else{
-        Jogos novoJogo = new Jogos(nome, valor, genero, avaliacao);
+        String nome;
+        do {
+            System.out.println("Digite o nome do jogo: ");
+            nome = cadastroJG.nextLine().trim();
+            if (nome.isEmpty()) {
+                System.out.println("Nome invalido. Digite um nome valido.");
+            } else if (jogoJaCadastrado(nome)) {
+                System.out.println("Este jogo ja foi cadastrado.");
+            }
+        } while (nome.isEmpty() || jogoJaCadastrado(nome));
+
+        double valor;
+        do {
+            valor = lerDouble(cadastroJG, "Digite o valor do jogo: ");
+            if (valor <= 0) {
+                System.out.println("Valor invalido. O valor deve ser maior que zero.");
+            }
+        } while (valor <= 0);
+
+        String genero;
+        do {
+            System.out.println("Digite os generos do jogo separando cada genero por virgula: ");
+            genero = cadastroJG.nextLine();
+            if (genero == null || genero.trim().isEmpty()) {
+                System.out.println("Genero invalido. Informe pelo menos um genero.");
+            }
+        } while (genero == null || genero.trim().isEmpty());
+
+        double avaliacao;
+        do {
+            avaliacao = lerDouble(cadastroJG, "Digite a nota do jogo: ");
+            if (avaliacao < 0 || avaliacao > 10) {
+                System.out.println("Nota invalida. A nota deve estar entre 0 e 10.");
+            }
+        } while (avaliacao < 0 || avaliacao > 10);
+
+        Jogos novoJogo = new Jogos(nome.trim(), valor, genero.trim(), avaliacao);
         listJogos.add(novoJogo);
-        
-      
+
         System.out.println("O jogo " + novoJogo.getnome() + " esta registrado com sucesso");
     }
-}
+
+    private static double lerDouble(Scanner scanner, String mensagem) {
+        while (true) {
+            System.out.println(mensagem);
+            try {
+                double valor = Double.parseDouble(scanner.nextLine().trim().replace(',', '.'));
+                if (Double.isFinite(valor)) {
+                    return valor;
+                }
+            } catch (NumberFormatException e) {
+            }
+            System.out.println("Entrada invalida. Digite um numero valido.");
+        }
+    }
+
+    private static boolean jogoJaCadastrado(String nome) {
+        for (Jogos jogo : listJogos) {
+            if (jogo.getnome().equalsIgnoreCase(nome.trim())) {
+                return true;
+            }
+        }
+        return false;
+    }
 // Método para exibir o catálogo de jogos cadastrados alem de informar ao usuário caso não haja nenhum jogo cadastrado
     public static void exibirCatalogo() {
         if (listJogos.isEmpty()) {
