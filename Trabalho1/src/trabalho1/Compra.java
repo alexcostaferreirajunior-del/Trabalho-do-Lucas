@@ -15,6 +15,16 @@ public class Compra {
             return;
         }
 
+        String nomeJogo = jogo.getnome();
+        if (nomeJogo == null || nomeJogo.trim().isEmpty()) {
+            System.out.println("Jogo invalido.");
+            return;
+        }
+        if (usuario.possuiJogo(nomeJogo)) {
+            System.out.println("Voce ja possui este jogo.");
+            return;
+        }
+
         double saldo = usuario.getSaldo();
         double valorJogo = jogo.getvalor();
 
@@ -26,6 +36,7 @@ public class Compra {
         }
 
         usuario.setSaldo(saldo - valorJogo);
+        usuario.adicionarJogo(nomeJogo);
         System.out.println("Compra realizada com sucesso!");
         System.out.println("Saldo restante: R$ " + usuario.getSaldo());
     }

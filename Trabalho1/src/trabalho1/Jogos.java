@@ -13,6 +13,11 @@ public class Jogos {
     
 // Lista estática para armazenar os jogos cadastrados
     private static final ArrayList<Jogos> listJogos = new ArrayList<>();
+
+    static {
+        listJogos.add(new Jogos("Aventura Espacial", 49.90, "Aventura, Ficcao cientifica", 8.5));
+    }
+
     // Construtor da classe Jogos
     public Jogos(String nome, double valor, String genero, double avaliacao) {
         this.nomes = nome;

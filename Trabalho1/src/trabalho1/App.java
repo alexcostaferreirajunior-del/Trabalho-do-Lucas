@@ -6,14 +6,8 @@ public class App {
 
     public static void main(String[] args) {
         try (Scanner scan = new Scanner(System.in)) {
-            String nomeUsuario;
-            do {
-                System.out.println("Digite o nome do usuario: ");
-                nomeUsuario = scan.nextLine().trim();
-                if (nomeUsuario.isEmpty()) {
-                    System.out.println("Nome invalido. Digite um nome valido.");
-                }
-            } while (nomeUsuario.isEmpty());
+            Usuario usuario = new Usuario("", 0, "", "", "");
+            Usuario.cadastrarUsuario(scan, usuario);
 
             double saldoInicial;
             do {
@@ -22,12 +16,11 @@ public class App {
                     System.out.println("Saldo invalido. O saldo inicial nao pode ser negativo.");
                 }
             } while (saldoInicial < 0);
-
-            Usuario usuario = new Usuario(nomeUsuario, saldoInicial);
+            usuario.setSaldo(saldoInicial);
 
             int num;
             do {
-                num = lerInteiro(scan, "\nDigite 1 para adicionar jogo, 2 para ver o catalogo, 3 para fazer uma compra ou 0 para sair: ");
+                num = lerInteiro(scan, "\nDigite 1 para adicionar jogo, 2 para ver o catalogo, 3 para fazer uma compra, 4 para ver sua biblioteca ou 0 para sair: ");
 
                 switch (num){
                     case 1 -> {
@@ -64,6 +57,8 @@ public class App {
                         Compra compra = new Compra(usuario, Jogos.getCatalogo().get(indice));
                         compra.realizarCompra();
                     }
+                    case 4 ->
+                        Usuario.exibirBibliotecaUsuario(usuario);
                     case 0 ->
                         System.out.println("Encerrando o programa.");
                     default ->
