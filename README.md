@@ -6,6 +6,7 @@ Game Store
 ## Integrantes
 - Alex Costa Ferreira Junior-del
 - Iago Magalhaes Silva
+- Arthur
 
 ## Descrição do problema
 O projeto consiste em um sistema de loja de jogos em Java, inspirado em plataformas como Steam. O programa permite que o usuário cadastre sua conta, visualize e cadastre jogos, realize compras utilizando um saldo inicial e acompanhe a biblioteca de jogos adquiridos.
@@ -77,6 +78,11 @@ Saldo restante: R$ 200.00
   - Desenvolvimento do catálogo de jogos
   - Biblioteca de jogos do usuário
   - Integração das regras de cadastro e exibição
+
+- Arthur
+  - Apoio na organização do projeto
+  - Contribuições no desenvolvimento e ajustes gerais
+  - Participação no processo de revisão e validação do sistema
 
 ## Observações
 Este projeto foi desenvolvido como atividade acadêmica para aplicar conceitos de Java e POO em um cenário prático de loja de jogos. O sistema é executado no terminal e serve como uma simulação simples de uma plataforma de compra e gerenciamento de jogos.
